@@ -1,4 +1,4 @@
-# 🎣 Phishing Email Detector (Powered by Gemini API)
+# 🎣 BlockDaFish (Powered by Gemini API)
 
 Un semplice ma potente script in Python per l'analisi semantica delle email. Utilizza l'intelligenza artificiale (Gemini) e l'estrazione dati (BeautifulSoup) per rilevare tentativi di spear-phishing e social engineering a partire dal codice HTML grezzo delle email.
 
@@ -34,13 +34,13 @@ Svolge tre compiti critici per la sicurezza:
 ## 📦 Installazione
 
 1. **Crea e attiva un ambiente virtuale:**
-   ```bash
-   python -m venv venv
-   # Su Windows:
-   .\venv\Scripts\activate
-   # Su Mac/Linux:
-   source venv/bin/activate
-   ```
+```bash
+python -m venv venv
+# Su Windows:
+.\venv\Scripts\activate
+# Su Mac/Linux:
+source venv/bin/activate
+```
 2. **Installa le dipendenze necessarie:**
 
 ```bash
