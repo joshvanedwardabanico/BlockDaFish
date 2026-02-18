@@ -9,6 +9,23 @@ Un semplice ma potente script in Python per l'analisi semantica delle email. Uti
 - **Ispezione URL:** Segnala domini sospetti o offuscati presenti nel corpo del messaggio.
 - **Output Strutturato:** Restituisce un JSON con il punteggio di rischio, l'esito booleano e la motivazione dettagliata.
 
+## 🧩 Il Ruolo di BeautifulSoup4 nel Progetto
+
+In questo software, **BeautifulSoup4** funge da ponte tra l'email grezza (spesso illeggibile a causa di tag HTML, CSS e script) e l'intelligenza artificiale di Gemini. 
+
+Svolge tre compiti critici per la sicurezza:
+
+1.  **Sanitizzazione dei Dati (Noise Reduction):** Le email moderne sono sature di codice HTML complesso. BS4 "pulisce" questo rumore, estraendo solo il testo visibile. Questo permette a Gemini di concentrarsi sul messaggio semantico senza essere confuso da migliaia di righe di codice di formattazione.
+2.  **Rilevamento dei Link Nascosti (Link Analysis):** Molti attacchi di phishing usano bottoni o immagini che mascherano l'URL reale. BS4 ispeziona chirurgicamente ogni tag `<a>` e ne estrae l'attributo `href`, rendendo visibile l'effettiva destinazione del link, anche se nascosta dietro un testo ingannevole come "Clicca qui".
+3.  **Efficienza dei Token:** Inviando solo il testo e i link estratti invece dell'intero sorgente HTML, riduciamo drasticamente il numero di token consumati nell'API di Gemini, rendendo l'analisi più veloce ed economica.
+
+### Esempio di trasformazione:
+**Input (HTML Grezzo):**
+`<a href="http://truffa-sito.xyz" style="color:red;">Accedi al tuo conto</a>`
+
+**Output (Processato da BS4):**
+`Testo: "Accedi al tuo conto" | Link: "http://truffa-sito.xyz"`
+
 ## 🛠️ Prerequisiti
 
 - Python 3.x
