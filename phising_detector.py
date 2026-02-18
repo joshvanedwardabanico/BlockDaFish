@@ -2,7 +2,7 @@ import os
 from dotenv import load_dotenv
 import google.generativeai as genai
 import json
-from bs4 import BeautifulSoup  # <-- NUOVO IMPORT
+from bs4 import BeautifulSoup 
 
 # 1. Caricamento API Key
 load_dotenv()
@@ -34,10 +34,10 @@ def estrai_dati_html(html_grezzo):
     """
     return dati_per_gemini
 
-# --- FUNZIONE PRINCIPALE (Aggiornata con istruzioni sui link) ---
+# --- FUNZIONE PRINCIPALE  ---
 def analizza_phishing(dati_puliti):
     print("⏳ Analisi di sicurezza in corso tramite Gemini...\n")
-    model = genai.GenerativeModel('gemini-2.5-flash')
+    model = genai.GenerativeModel('gemini-flash-latest')
     
     prompt = f"""
     Sei un analista di cybersecurity. Analizza il seguente contenuto di un'email (testo e link estratti) per capire se è phishing.
@@ -112,4 +112,5 @@ esito = analizza_phishing(dati_estratti)
 print("--- RISULTATO ANALISI ---")
 print(f"È Phishing?: {esito.get('is_phishing')}")
 print(f"Punteggio di Rischio: {esito.get('score_rischio')}/100")
+
 print(f"Motivazione: {esito.get('motivo')}")
